@@ -1,23 +1,24 @@
 def solution(a)
+  input = a.clone
   daily_ticket = 2
   weekly_ticket = 7
   monthly_ticket = 25
 
   cost = 0
 
-  return 25 if a.length >= 23
+  return 25 if input.length >= 23
 
-  until a.length == 0 do
-    today = a.first
+  until input.length == 0 do
+    today = input.first
 
     end_of_week = today + 6
-    week_utilization = a.select {|x| x <= end_of_week }
+    week_utilization = input.select {|x| x <= end_of_week }
 
     better_op_exists = false
 
     week_utilization.each do |day|
       last_day = day + 6
-      potential = a.select {|x| x >= day && x <= last_day}
+      potential = input.select {|x| x >= day && x <= last_day}
       if potential.length > week_utilization.length
         better_op_exists =  true
       end
@@ -25,10 +26,10 @@ def solution(a)
 
     if week_utilization.length >= 4 && !better_op_exists
       cost += weekly_ticket
-      a.reject! { |x| x <= end_of_week}
+      input.reject! { |x| x <= end_of_week}
     else
       cost += daily_ticket
-      a.delete(today)
+      input.delete(today)
     end
   end
 
