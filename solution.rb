@@ -5,7 +5,7 @@ def solution(a)
 
   cost = 0
 
-  return 25 if a.length >= 25
+  return 25 if a.length >= 23
 
   until a.length == 0 do
     today = a.first
